@@ -1,0 +1,36 @@
+﻿@page "/"
+
+<div>
+    Cascadin value: @appState.username, age: @appState.age
+</div>
+
+<div style="flex">
+    <div style="width: 250px">
+        <select class="form-control" @bind="appState.username">
+            <option value="Tajib Smajlović">Full name</option>
+            <option value="TS">Credentials</option>
+            <option value="tajibsm">Username</option>
+        </select>
+    </div>
+
+    <div style="width: 250px">
+        <select class="form-control" @bind="appState.age">
+            <option value="1995">Year of birth</option>
+            <option value="25">Age</option>
+        </select>
+    </div>
+</div>
+
+<div>
+    <MoviesList @ref="moviesList" Loading="loading" Movies="movies">
+        <LoadingTemplate>
+            <img src="https://miro.medium.com/max/882/1*9EBHIOzhE1XfMYoKz1JcsQ.gif" />
+        </LoadingTemplate>
+
+        <NullTemplate>
+            No movies...
+        </NullTemplate>
+    </MoviesList>
+
+    <button @onclick="AddMovie">Add movie</button>
+</div>

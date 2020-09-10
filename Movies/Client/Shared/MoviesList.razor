@@ -1,0 +1,23 @@
+﻿<div>
+    @if (Movies == null)
+    {
+        if (Loading)
+        {
+            @LoadingTemplate
+        }
+        else
+        {
+            @NullTemplate
+        }
+    }
+    else
+    {
+        <input type="checkbox" @bind="displayButtons" />
+        <ul>
+            @foreach (var movie in Movies)
+            {
+                <MovieComponent movie="movie" displayButtons="displayButtons" DeleteMovie="DeleteMovie" />
+            }
+        </ul>
+    }
+</div>
