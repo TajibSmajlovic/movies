@@ -1,23 +1,7 @@
-﻿<div>
-    @if (Movies == null)
-    {
-        if (Loading)
-        {
-            @LoadingTemplate
-        }
-        else
-        {
-            @NullTemplate
-        }
-    }
-    else
-    {
-        <input type="checkbox" @bind="displayButtons" />
-        <ul>
-            @foreach (var movie in Movies)
-            {
-                <MovieComponent movie="movie" displayButtons="displayButtons" DeleteMovie="DeleteMovie" />
-            }
-        </ul>
-    }
+﻿<div class="movies-container">
+    <GenericList List="Movies">
+        <ElementTemplate Context="movie">
+            <MovieComponent Movie="movie" DeleteMovie="DeleteMovie" />
+        </ElementTemplate>
+    </GenericList>
 </div>

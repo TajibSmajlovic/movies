@@ -1,18 +1,24 @@
-﻿<li>
-    <b>@((MarkupString)(movie.Title))</b>
-    <p>@movie.RealeaseDate.ToString("dd MMM yyyy")</p>
-
-    @if (displayButtons)
-    {
-        <div>
-            <button @onclick="@( () => DeleteMovie.InvokeAsync(movie) )">Delete</button>
-        </div>
-    }
-</li>
+﻿<div class="individual-movie-container">
+    <a href="@movieUrl">
+        <img src="@Movie.Poster" alt="Poster" class="movie-poster" />
+    </a>
+    <p><a href="@movieUrl">@Movie.TitleBrief</a></p>
+    <div>
+        <a class="btn btn-info">Edit</a>
+        <button type="button" class="btn btn-danger"
+                @onclick="@(() => DeleteMovie.InvokeAsync(Movie))">
+            Delete
+        </button>
+    </div>
+</div>
 
 @code {
-    [Parameter] public Movie movie { get; set; }
-    [Parameter] public bool displayButtons { get; set; }
+    [Parameter] public Movie Movie { get; set; }
     [Parameter] public EventCallback<Movie> DeleteMovie { get; set; }
+    private string movieUrl = string.Empty;
 
+    protected override void OnInitialized()
+    {
+        movieUrl = $"movies/{Movie.Id}";
+    }
 }
