@@ -13,6 +13,7 @@ namespace Movies.Client.Pages
     public partial class Index
     {
         // [CascadingParameter] public AppState appState { get; set; }
+
         [Inject] private IMovieService movieService { get; set; }
 
         private List<Movie> Movies;

@@ -12,8 +12,12 @@ namespace Movies.Client.Shared
 
         [Parameter] public List<Movie> Movies { get; set; }
 
+        private MovieComponent movieComponentRef;
+
         private async void DeleteMovie(Movie movie)
         {
+            movieComponentRef.TestForRef();
+
             bool shouldDelete = await Js.Confirm("Are you sure you want to delete?");
 
             System.Console.WriteLine(shouldDelete);

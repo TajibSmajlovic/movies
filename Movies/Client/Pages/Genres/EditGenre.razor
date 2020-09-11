@@ -2,6 +2,7 @@
 
 <h3>EditGenre</h3>
 
-@code {
-
+@if (genre != null)
+{
+    <GenreFormComponent Genre="genre" OnValidSubmit="Edit" />
 }
