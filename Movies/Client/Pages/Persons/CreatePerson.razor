@@ -1,4 +1,5 @@
 ﻿@page "/users/create"
+@inject IPersonRepository personRepository
 
 <h3>Create Person</h3>
 
@@ -8,5 +9,15 @@
 
     private void Create()
     {
-        Console.WriteLine("creating person...");
+        try
+        {
+            personRepository.CreatePerson(Person);
+            navigationManager.NavigateTo("people");
+
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
     } }

@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Movies.Client.Helpers;
 using Tewr.Blazor.FileReader;
+using BlazorMovies.Client.Helpers;
+using Movies.Client.Repository;
 
 namespace Movies.Client
 {
@@ -21,6 +23,10 @@ namespace Movies.Client
 
             builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddTransient<IMovieService, MovieService>();
+            builder.Services.AddScoped<IHttpService, HttpService>();
+            builder.Services.AddTransient<IGenreRepository, GenreRepository>();
+            builder.Services.AddTransient<IPersonRepository, PersonRepository>();
+            builder.Services.AddTransient<IMoviesRepository, MoviesRepository>();
 
             builder.Services.AddFileReaderService(options => options.InitializeOnFirstCall = true);
 

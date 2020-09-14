@@ -1,0 +1,16 @@
+﻿@page "/genres/{GenreId:int}"
+@using System.Net.Http
+@inject HttpClient Http
+
+<h3>IndividualGenre</h3>
+
+@code {
+    [Parameter] public int GenreId { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        Console.WriteLine("ID: " + GenreId);
+
+        await Http.GetFromJsonAsync<Genre>($"api/genres123/{GenreId}");
+    }
+}

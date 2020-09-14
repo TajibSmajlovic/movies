@@ -1,11 +1,25 @@
 ﻿@page "/genres"
+@inject IGenreRepository genreRepository
 
 <h3>Genres</h3>
 
 <div class="form-group">
-    <a class="btn btn-info" href="genres/create">New Genre</a>
+    <a class="btn btn-info" href="genres/1">New Genre</a>
 </div>
 
 @code {
+
+    protected async override Task OnInitializedAsync()
+    {
+        try
+        {
+            await genreRepository.GetGenres();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
 
 }
